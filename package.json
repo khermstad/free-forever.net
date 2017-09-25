@@ -4,7 +4,8 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "babel src -d lib"
   },
   "repository": {
     "type": "git",
@@ -15,5 +16,13 @@
   "bugs": {
     "url": "https://github.com/khermstad/free-forever.net/issues"
   },
-  "homepage": "https://github.com/khermstad/free-forever.net#readme"
+  "homepage": "https://github.com/khermstad/free-forever.net#readme",
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-env": "^1.6.0",
+    "express": "^4.15.4"
+  },
+  "dependencies": {
+    "express-handlebars": "^3.0.0"
+  }
 }
