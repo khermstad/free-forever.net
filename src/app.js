@@ -12,7 +12,11 @@ app.set('views', __dirname + '/views');
 
 
 app.get('/', function (req, res) {
-    res.render('home');
+    res.render('index');
 });
+
+app.get('/catalog', function (req, res) {
+    res.render('catalog');
+})
 
 app.listen(3000);
