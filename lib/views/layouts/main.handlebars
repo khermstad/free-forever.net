@@ -27,15 +27,16 @@
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Log-in / Register <span class="caret"></span></a>
               <ul class="dropdown-menu">
               <li class="dropdown-header">Log-in:</li>
+                <form action="/login" method="post" id="loginForm">
                 <center><input placeholder="Username"></input></center>
                 <br>
-                <center><input placeholder="Password"></input></center>
+                <center><input placeholder="Password" type="password"></input></center>
                 <br>
-               
                 <center>
-                <button type="button" class="btn btn-primary btn-sm">Submit</button>               
-                <button type="button" class="btn btn-secondary btn-sm">Clear</button>
+                <button type="submit" class="btn btn-primary btn-sm">Submit</button>               
+                <button type="button" class="btn btn-secondary btn-sm" onclick="$('#loginForm').trigger('reset');">Clear</button>
                 </center>
+                </form>
                 <li role="separator" class="divider"></li>                
                 <li><a href="#">Register New Account</a></li>
               </ul>
