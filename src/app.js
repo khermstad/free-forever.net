@@ -19,6 +19,8 @@ app.listen(port, () => console.log("app.js running on port: " + port));
 const index = require("./routes/index.js")
 app.use("/", index)
 
+const catalog = require("./routes/catalog.js")
+app.use("/catalog", catalog)
 
 app.get('/catalog', function (req, res) {
     res.render('catalog');
