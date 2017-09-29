@@ -22,6 +22,3 @@ app.use("/", index)
 const catalog = require("./routes/catalog.js")
 app.use("/catalog", catalog)
 
-app.get('/catalog', function (req, res) {
-    res.render('catalog');
-})
