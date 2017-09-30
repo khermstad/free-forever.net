@@ -8,7 +8,7 @@ const path = require('path');
 const index = require("./routes/index.js")
 const catalog = require("./routes/catalog.js")
 const artists = require("./routes/artists.js")
-const register = require(".routes/register.js")
+const register = require("./routes/register.js")
 
 // port settings
 const port = 3000;
