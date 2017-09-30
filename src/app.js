@@ -3,6 +3,12 @@ const express = require('express');
 const exphbs  = require('express-handlebars');
 const path = require('path');
 const app = express();
+
+// route imports
+const index = require("./routes/index.js")
+const catalog = require("./routes/catalog.js")
+const artists = require("./routes/artists.js")
+
 const port = 3000;
 
 // view settings
@@ -16,11 +22,8 @@ app.use('/public', express.static(path.join(__dirname, 'public')))
 app.listen(port, () => console.log("app.js running on port: " + port));
 
 // routes
-const index = require("./routes/index.js")
 app.use("/", index)
 
-const catalog = require("./routes/catalog.js")
 app.use("/catalog", catalog)
 
-const artists = require("./routes/artists.js")
 app.use("/artists", artists)
