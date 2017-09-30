@@ -9,6 +9,7 @@ const index = require("./routes/index.js")
 const catalog = require("./routes/catalog.js")
 const artists = require("./routes/artists.js")
 const register = require("./routes/register.js")
+const login = require("./routes/login.js")
 
 // port settings
 const port = 3000;
@@ -26,6 +27,7 @@ app.use("/", index)
 app.use("/catalog", catalog)
 app.use("/artists", artists)
 app.use("/register", register)
+app.use("/login", login)
 
 app.listen(port, () => console.log("app.js running on port: " + port));
 
