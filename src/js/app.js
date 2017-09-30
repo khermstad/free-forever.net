@@ -15,12 +15,12 @@ const login = require("./routes/login.js")
 const port = 5000;
 
 // view settings
-app.engine('handlebars', exphbs({defaultLayout: 'main', layoutsDir: __dirname + '/views/layouts'}));
+app.engine('handlebars', exphbs({defaultLayout: 'main', layoutsDir: __dirname + '/../views/layouts'}));
 app.set('view engine', 'handlebars');
-app.set('views', __dirname + '/views');
+app.set('views', __dirname + '/../views');
 
 // static public directory (for css/jss and other static files)
-app.use('/public', express.static(path.join(__dirname, 'public')))
+app.use('/public', express.static(path.join(__dirname, '/../public')))
 
 // routes
 app.use("/", index)
