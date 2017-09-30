@@ -8,6 +8,7 @@ const path = require('path');
 const index = require("./routes/index.js")
 const catalog = require("./routes/catalog.js")
 const artists = require("./routes/artists.js")
+const register = require(".routes/register.js")
 
 // port settings
 const port = 3000;
@@ -24,6 +25,7 @@ app.use('/public', express.static(path.join(__dirname, 'public')))
 app.use("/", index)
 app.use("/catalog", catalog)
 app.use("/artists", artists)
+app.use("/register", register)
 
 app.listen(port, () => console.log("app.js running on port: " + port));
 
