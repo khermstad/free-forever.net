@@ -12,7 +12,7 @@ const register = require("./routes/register.js")
 const login = require("./routes/login.js")
 
 // port settings
-const port = 3000;
+const port = 5000;
 
 // view settings
 app.engine('handlebars', exphbs({defaultLayout: 'main', layoutsDir: __dirname + '/views/layouts'}));
