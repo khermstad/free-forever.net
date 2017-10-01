@@ -1,7 +1,7 @@
 // app.js - free-forever.net - khermstad 
 const express = require('express');
 const app = express();
-const exphbs  = require('express-handlebars');
+const exphbs = require('express-handlebars');
 const path = require('path');
 
 // route imports
@@ -15,7 +15,10 @@ const login = require("./routes/login.js")
 const port = 5000;
 
 // view settings
-app.engine('handlebars', exphbs({defaultLayout: 'main', layoutsDir: __dirname + '/../views/layouts'}));
+app.engine('handlebars', exphbs({
+    defaultLayout: 'main',
+    layoutsDir: __dirname + '/../views/layouts'
+}));
 app.set('view engine', 'handlebars');
 app.set('views', __dirname + '/../views');
 
@@ -30,4 +33,3 @@ app.use("/register", register)
 app.use("/login", login)
 
 app.listen(port, () => console.log("app.js running on port: " + port));
-
