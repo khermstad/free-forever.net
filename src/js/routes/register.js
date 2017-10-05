@@ -4,7 +4,8 @@ const router = express.Router()
 router.get("/", (req, res) => res.render("register"))
 
 router.post("/", (req, res) => {
-    res.send(req.body.email);
+    const newUser = req.body;
+    res.send(newUser);
 })
 
 module.exports = router;
