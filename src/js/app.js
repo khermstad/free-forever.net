@@ -3,6 +3,7 @@ const express = require('express');
 const app = express();
 const exphbs = require('express-handlebars');
 const path = require('path');
+const parser = require('body-parser');
 
 // route imports
 const index = require("./routes/index.js")
@@ -13,6 +14,10 @@ const login = require("./routes/login.js")
 
 // port settings
 const port = 5000;
+
+//body-parser setting
+app.use(parser.urlencoded({extended:true}))
+app.use(parser.json())
 
 // view settings
 app.engine('handlebars', exphbs({
