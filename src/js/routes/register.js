@@ -2,6 +2,8 @@ const express = require("express");
 const router = express.Router();
 const user = require('../models/User.js')
 const db = require("../db")
+const bcrypt = require('bcrypt-nodejs')
+const salt = bcrypt.genSaltSync(10);
 
 const User = db.define('user', user.schema, {timestamps: false})
 
@@ -29,11 +31,13 @@ router.post('/', (req, res) => {
         return res.render('register', {register_error_message: "Passwords are not equal"})
     }
 
+    let hashedPassword = bcrypt.hashSync(password, salt)
+
     isUnique(email).then(isUnique =>{
         if(isUnique){
             createUser(email, 
                 displayedname,
-                password)
+                hashedPassword)
 
 
             res.render('login')

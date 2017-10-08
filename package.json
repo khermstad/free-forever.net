@@ -23,6 +23,7 @@
     "express": "^4.15.4"
   },
   "dependencies": {
+    "bcrypt-nodejs": "0.0.3",
     "express-handlebars": "^3.0.0",
     "pg": "^7.3.0",
     "pg-hstore": "^2.3.2",
