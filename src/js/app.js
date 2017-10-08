@@ -4,7 +4,6 @@ const app = express();
 const exphbs = require('express-handlebars');
 const path = require('path');
 const parser = require('body-parser');
-const Sequelize = require('sequelize')
 
 
 // route imports
@@ -17,20 +16,6 @@ const login = require("./routes/login.js");
 // port settings
 const port = 5000;
 
-// database connection
-const db_config = require('../../db-config')
-const sequelize = new Sequelize(db_config.dbname, db_config.username, db_config.password, {
-    host: db_config.host,
-    dialect: db_config.dialect,
-
-    pool: {
-        max: 5,
-        min: 0,
-        idle: 10000
-    },
-
-    operatorsAliases: false
-})
 
 //body-parser setting
 app.use(parser.urlencoded({extended:true}));
@@ -56,4 +41,3 @@ app.use("/login", login);
 
 app.listen(port, () => console.log("app.js running on port: " + port));
 
-module.exports = sequelize;
