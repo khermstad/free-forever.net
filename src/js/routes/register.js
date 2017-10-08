@@ -28,7 +28,7 @@ router.post('/', (req, res) => {
 
     // if passwords aren't equal, re-direct to register page again (with message)
     if (password != password2){
-        return res.render('register', {register_error_message: "Passwords are not equal"})
+        return res.render('register', {register_error_message: "Passwords are not equal."})
     }
 
     let hashedPassword = bcrypt.hashSync(password, salt)
@@ -40,10 +40,10 @@ router.post('/', (req, res) => {
                 hashedPassword)
 
 
-            res.render('login')
+            res.render('login', {success_register_message: "Registration Succesful! You can now log-in."})
         }
         else{
-            res.render('register', {register_error_message: "Email already exists"})
+            res.render('register', {register_error_message: "Email already exists."})
         }
     })
 })
