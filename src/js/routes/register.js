@@ -22,19 +22,26 @@ const isUnique = (email) => {
 router.get('/', (req, res) => res.render("register"))
 
 router.post('/', (req, res) => {
-    let {email, displayedname, password} = req.body;
-    
+    const {email, displayedname, password, password2} = req.body;
+
+    // if passwords aren't equal, re-direct to register page again (with message)
+    if (password != password2){
+        return res.render('register', {register_error_message: "Passwords are not equal"})
+    }
+
     isUnique(email).then(isUnique =>{
         if(isUnique){
-            createUser(email, displayedname, password)
+            createUser(email, 
+                displayedname,
+                password)
+
+
             res.render('login')
         }
         else{
-            res.render('register')
+            res.render('register', {register_error_message: "Email already exists"})
         }
     })
-
-
 })
 
 

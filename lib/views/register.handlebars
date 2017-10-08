@@ -1,6 +1,13 @@
 <h1>Register New Account</h1>
 
 <div class="container">
+        
+        {{#if register_error_message}}
+            <div class="alert alert-danger">
+                <strong>{{register_error_message}}</strong> 
+            </div>
+        {{/if}}
+
     <form action="/register" method="post" id="registerForm">
         <div class="form-group">
             <label for="email">Email:</label>
