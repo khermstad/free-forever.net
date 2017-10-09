@@ -16,11 +16,25 @@ const isValidEmail = (email) => {
             }
         })
         .then(count => {
-            if (count == 1) {
+            if (count === 1) {
                 return true;
             }
             return false;
         })
+}
+
+const isValidPassword = (email, password) => {
+    return User.findOne({
+        where: {
+            email: email
+        }
+    })
+    .then(user =>{
+        const stored_password = user.dataValues.password
+        const isPassword = bcrypt.compareSync(password, stored_password)
+        return isPassword;
+    })
+    return false;
 }
 
 router.get("/", (req, res) => res.render("login"));
@@ -30,14 +44,19 @@ router.post("/", (req, res) => {
 
     isValidEmail(email).then(isValid => {
         if(isValid) {
-            res.send("valid user")
+            isValidPassword(email, password).then(isValid =>{
+                if (isValid){
+                   return res.send('valid user and password')
+                }
+                else{
+                    return res.send('valid user, invalid password')
+                }
+            })
         }
         else{
-            res.send("invalid user")
+            return res.send("invalid user")
         }
     }) 
-
-   // var isPass = bcrypt.compareSync(userCredentials.password, results[0].password)
     
 })
 
