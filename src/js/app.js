@@ -4,7 +4,7 @@ const app = express();
 const exphbs = require('express-handlebars');
 const path = require('path');
 const parser = require('body-parser');
-
+const session = require('express-session')
 
 // route imports
 const index = require("./routes/index.js");
@@ -16,6 +16,8 @@ const login = require("./routes/login.js");
 // port settings
 const port = 5000;
 
+// sessions
+app.use(session({ secret: 'keyboard cat', cookie: { maxAge: 100000 }, resave: true, saveUninitialized: true}))
 
 //body-parser setting
 app.use(parser.urlencoded({extended:true}));

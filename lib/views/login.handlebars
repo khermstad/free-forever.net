@@ -4,6 +4,12 @@
     </div>
 {{/if}}
 
+{{#if login_error_message}}
+     <div class="alert alert-danger">
+        <strong>{{login_error_message}}</strong> 
+     </div>
+{{/if}}
+
  <form action="/login" method="post" id="loginForm">
         <div class="form-group">
             <label for="email">Email:</label>

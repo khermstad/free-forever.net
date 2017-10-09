@@ -25,6 +25,7 @@
   "dependencies": {
     "bcrypt-nodejs": "0.0.3",
     "express-handlebars": "^3.0.0",
+    "express-session": "^1.15.6",
     "pg": "^7.3.0",
     "pg-hstore": "^2.3.2",
     "sequelize": "^4.13.5"

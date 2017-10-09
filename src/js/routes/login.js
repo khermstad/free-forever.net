@@ -49,12 +49,12 @@ router.post("/", (req, res) => {
                    return res.send('valid user and password')
                 }
                 else{
-                    return res.send('valid user, invalid password')
+                    return res.render('login', {login_error_message: "Incorrect Password"})
                 }
             })
         }
         else{
-            return res.send("invalid user")
+            return res.render('login', {login_error_message: "Unrecognized email."})
         }
     }) 
     
