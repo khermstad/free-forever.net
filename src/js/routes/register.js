@@ -54,7 +54,7 @@ router.post('/', (req, res) => {
         if (isUnique) {
             createUser(email, displayedname,
                 hashedPassword)
-                
+
             res.render('login', {
                 success_register_message: "Registration Succesful! You can now log-in."
             })
