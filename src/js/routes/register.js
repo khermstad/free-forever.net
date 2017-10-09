@@ -31,7 +31,7 @@ const isUnique = (email) => {
         })
 }
 
-router.get('/', (req, res) => res.render("register"))
+router.get('/', (req, res) => res.render("register", {email: req.session.email}))
 
 router.post('/', (req, res) => {
     const {

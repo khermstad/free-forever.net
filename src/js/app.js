@@ -41,5 +41,10 @@ app.use("/artists", artists);
 app.use("/register", register);
 app.use("/login", login);
 
+app.get("/signout", (req, res) => {
+    req.session.destroy(console.log('session destroyed'))
+    res.render('index')
+})
+
 app.listen(port, () => console.log("app.js running on port: " + port));
 
