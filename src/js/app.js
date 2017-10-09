@@ -12,7 +12,9 @@ const catalog = require("./routes/catalog.js");
 const artists = require("./routes/artists.js");
 const register = require("./routes/register.js");
 const login = require("./routes/login.js");
-const userhome = require("./routes/userhome.js");
+const mycatalog = require("./routes/mycatalog.js");
+const uploadtrack = require("./routes/uploadtrack.js");
+const mysettings = require("./routes/mysettings.js");
 
 // port settings
 const port = 5000;
@@ -41,7 +43,9 @@ app.use("/catalog", catalog);
 app.use("/artists", artists);
 app.use("/register", register);
 app.use("/login", login);
-app.use('/userhome', userhome)
+app.use("/mycatalog", mycatalog)
+app.use("/uploadtrack", uploadtrack)
+app.use("/mysettings", mysettings)
 
 app.get("/signout", (req, res) => {
     req.session.destroy(console.log('session destroyed'))
