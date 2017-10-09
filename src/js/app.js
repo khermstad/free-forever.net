@@ -12,12 +12,13 @@ const catalog = require("./routes/catalog.js");
 const artists = require("./routes/artists.js");
 const register = require("./routes/register.js");
 const login = require("./routes/login.js");
+const userhome = require("./routes/userhome.js");
 
 // port settings
 const port = 5000;
 
 // sessions
-app.use(session({ secret: 'keyboard cat', cookie: { maxAge: 100000 }, resave: true, saveUninitialized: true}))
+app.use(session({ secret: 'keyboard cat', cookie: { maxAge: 1000000 }, resave: true, saveUninitialized: true}))
 
 //body-parser setting
 app.use(parser.urlencoded({extended:true}));
@@ -40,6 +41,7 @@ app.use("/catalog", catalog);
 app.use("/artists", artists);
 app.use("/register", register);
 app.use("/login", login);
+app.use('/userhome', userhome)
 
 app.get("/signout", (req, res) => {
     req.session.destroy(console.log('session destroyed'))
