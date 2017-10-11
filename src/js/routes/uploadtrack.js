@@ -12,6 +12,7 @@ const storage = multer.diskStorage({
 const upload = multer({storage: storage})
 
 const s3client = require('./../s3uploader/s3client')
+const s3_creds = require('../../../config/aws-config')
 
 const buildParams = (file, bucket, key) => {
     var params = {
@@ -41,10 +42,11 @@ const uploadFile = (params, client) => {
 
 router.get("/", (req, res) => res.render("user/uploadtrack", {req: req}))
 
+
 router.post("/", upload.single('file'), (req, res) => {
     console.log(req.file)
     console.log('testing file upload')
-    uploadFile(buildParams(req.file.originalname, "khermstad-s3uploader-testbucket", 
+    uploadFile(buildParams(req.file.originalname, s3_creds.s3_bucket, 
     "users/" + req.session.email + "/tracks/" + req.file.originalname), s3client)
 })
 

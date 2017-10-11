@@ -15,31 +15,7 @@ const s3_creds = require('../../../config/aws-config')
  },
 });
 
-const buildParams = (file, bucket, key) => {
-    var params = {
-        localFile: file,
 
-        s3Params: {
-            Bucket: bucket,
-            Key: key,
-        }
-    }
-    return params;
-}
-
-const uploadFile = (params) => {
- const uploader = client.uploadFile(params);
-  uploader.on('error', function(err) {
-    console.error("unable to upload:", err.stack);
-  });
-  uploader.on('progress', function() {
-    console.log("progress", uploader.progressMd5Amount,
-              uploader.progressAmount, uploader.progressTotal);
-  });
-  uploader.on('end', function() {
-    console.log("done uploading");
-  }); 
-}
 
 //uploadFile(buildParams("README.md", s3_creds.s3_bucket, "readme3.md"))
 
