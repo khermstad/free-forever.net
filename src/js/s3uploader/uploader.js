@@ -1,7 +1,6 @@
 const s3 = require('s3');
 const s3_creds = require('../../../config/aws-config')
 
-
  const client = s3.createClient({
  maxAsyncS3: 5,     // this is the default 
  s3RetryCount: 10,    // this is the default 
@@ -16,7 +15,6 @@ const s3_creds = require('../../../config/aws-config')
  },
 });
 
-
 const params = {
     localFile: "README.md",
    
@@ -27,6 +25,7 @@ const params = {
       // See: http://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/S3.html#putObject-property 
     },
   };
+
   const uploader = client.uploadFile(params);
   uploader.on('error', function(err) {
     console.error("unable to upload:", err.stack);
