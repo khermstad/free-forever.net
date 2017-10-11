@@ -1,5 +1,11 @@
 <h2>Upload New Track:</h2>
 
+    {{#if upload_failure_message}}
+        {{upload_failure_message}}
+    {{/if}}
+    {{#if upload_success_message}}
+        {{upload_success_message}}
+    {{/if}}
     <form action="/uploadtrack" method="post" id="uploadForm" enctype="multipart/form-data">
         <div class="form-group">
             <label for="email">Title:</label>
