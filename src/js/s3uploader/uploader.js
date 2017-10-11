@@ -15,6 +15,18 @@ const s3_creds = require('../../../config/aws-config')
  },
 });
 
+const buildParams = (file, bucket, key) => {
+    var params = {
+        localFile: file,
+
+        s3Params: {
+            Bucket: bucket,
+            Key: key,
+        }
+    }
+    return params;
+}
+
 const params = {
     localFile: "README.md",
    
@@ -26,7 +38,9 @@ const params = {
     },
   };
 
-  const uploader = client.uploadFile(params);
+const params1 = buildParams("README.md", s3_creds.s3_bucket, "readme1.md")
+
+const uploader = client.uploadFile(params1);
   uploader.on('error', function(err) {
     console.error("unable to upload:", err.stack);
   });
