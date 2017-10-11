@@ -1,4 +1,6 @@
 const s3 = require('s3');
+const s3_creds = require('../../../config/aws-config')
+
 
  const client = s3.createClient({
  maxAsyncS3: 5,     // this is the default 
@@ -7,19 +9,19 @@ const s3 = require('s3');
  multipartUploadThreshold: 20971520, // this is the default (20 MB) 
  multipartUploadSize: 15728640, // this is the default (15 MB) 
  s3Options: {
-   accessKeyId: "",
-   secretAccessKey: "",
+   accessKeyId: s3_creds.aws_access_key_id,
+   secretAccessKey: s3_creds.aws_secret_access_key,
    // any other options are passed to new AWS.S3() 
    // See: http://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/Config.html#constructor-property 
  },
 });
 
 const params = {
-    localFile: "",
+    localFile: "README.md",
    
     s3Params: {
-      Bucket: "",
-      Key: "",
+      Bucket: s3_creds.s3_bucket,
+      Key: "readme.md",
       // other options supported by putObject, except Body and ContentLength. 
       // See: http://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/S3.html#putObject-property 
     },
