@@ -1,65 +1,107 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-    <meta charset="utf-8">
-    <title>free-forever.net</title>
-    <link href="public/css/bootstrap.min.css" rel="stylesheet"/>
-    
+  <meta charset="utf-8">
+  <title>free-forever.net</title>
+  <link href="public/css/bootstrap.min.css" rel="stylesheet" />
+
 </head>
+
 <body>
- <!-- Static navbar -->
-    <nav class="navbar navbar-default navbar-static-top">
-      <div class="container">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" href="/">free-forever.net</a>
-        </div>
-        <div id="navbar" class="navbar-collapse collapse">
-          <ul class="nav navbar-nav">
-            <li><a href="/catalog">Catalog</a></li>
-            <li><a href="/artists">Artists</a></li>
-            <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Log-in / Register <span class="caret"></span></a>
-              <ul class="dropdown-menu">
+  <!-- Static navbar -->
+  <nav class="navbar navbar-default navbar-static-top">
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false"
+          aria-controls="navbar">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="/">free-forever.net</a>
+      </div>
+      <div id="navbar" class="navbar-collapse collapse">
+        <ul class="nav navbar-nav">
+          <li>
+            <a href="/catalog">Catalog</a>
+          </li>
+          <li>
+            <a href="/artists">Artists</a>
+          </li>
+          {{#if email}}
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">My Account
+              <span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu">
+              <li class="dropdown-header">User Menu:</li>
+              <li>
+                <a href="/uploadtrack">Upload New Track</a>
+                <a href="/mycatalog">My Catalog</a>
+                <a href="/mysettings">My Settings</a>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <a href="/signout">Sign Out</a>
+          </li>
+          {{else}}
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Log-in / Register
+              <span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu">
               <li class="dropdown-header">Log-in:</li>
-                <form action="/login" method="post" id="loginForm">
-                <center><input placeholder="Username" required></input></center>
-                <br>
-                <center><input placeholder="Password" type="password" required></input></center>
+              <form action="/login" method="post" id="loginForm">
+                <center>
+                  <input placeholder="Username" name="email" required></input>
+                </center>
                 <br>
                 <center>
-                <button type="submit" class="btn btn-primary btn-sm">Submit</button>               
-                <button type="button" class="btn btn-secondary btn-sm" onclick="$('#loginForm').trigger('reset');">Clear</button>
+                  <input placeholder="Password" name="password" type="password" required></input>
                 </center>
-                </form>
-                <li role="separator" class="divider"></li>                
-                <li><a href="/register">Register New Account</a></li>
-              </ul>
-            </li>
-          </ul>
-      
-        </div><!--/.nav-collapse -->
+
+                <br>
+                <center>
+                  <button type="submit" class="btn btn-primary btn-sm">Submit</button>
+                  <button type="button" class="btn btn-secondary btn-sm" onclick="$('#loginForm').trigger('reset');">Clear</button>
+                </center>
+              </form>
+              <li role="separator" class="divider"></li>
+              <li>
+                <a href="/register">Register New Account</a>
+              </li>
+            </ul>
+          </li>
+          {{/if}}
+        </ul>
+
       </div>
-    </nav>
+      <!--/.nav-collapse -->
+    </div>
+  </nav>
 
 
   <div class="container">
-      {{{body}}}
+    {{{body}}}
   </div>
 
   <div class="container">
     <hr class="my-4">
-    <center>created by <a href="http://khermstad.com">K. Hermstad</a></center>
+    <center>created by
+      <a href="http://khermstad.com">K. Hermstad</a>
+    </center>
   </div>
 
 
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4"
+    crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1"
+    crossorigin="anonymous"></script>
 </body>
+
 </html>
