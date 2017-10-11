@@ -1,6 +1,6 @@
-var s3 = require('s3');
+const s3 = require('s3');
 
-var client = s3.createClient({
+ const client = s3.createClient({
  maxAsyncS3: 5,     // this is the default 
  s3RetryCount: 10,    // this is the default 
  s3RetryDelay: 1000, // this is the default 
@@ -14,7 +14,7 @@ var client = s3.createClient({
  },
 });
 
-var params = {
+const params = {
     localFile: "",
    
     s3Params: {
@@ -24,7 +24,7 @@ var params = {
       // See: http://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/S3.html#putObject-property 
     },
   };
-  var uploader = client.uploadFile(params);
+  const uploader = client.uploadFile(params);
   uploader.on('error', function(err) {
     console.error("unable to upload:", err.stack);
   });
