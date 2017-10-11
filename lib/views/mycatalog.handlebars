@@ -1,5 +1,8 @@
-{{#if email}}
+{{#if req.session.email}}
     <h2>My Catalog:</h2>
+
+    {{req}}
+    
     {{else}}
      <div class="alert alert-danger">
                 <strong>Not Logged In.</strong> 
