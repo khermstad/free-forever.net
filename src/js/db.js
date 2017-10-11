@@ -1,6 +1,6 @@
 // database connection
 const Sequelize = require('sequelize')
-const db_config = require('../../db-config')
+const db_config = require('../../config/db-config')
 const sequelize = new Sequelize(db_config.dbname, db_config.username, db_config.password, {
     host: db_config.host,
     dialect: db_config.dialect,
