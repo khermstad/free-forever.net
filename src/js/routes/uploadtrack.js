@@ -35,6 +35,7 @@ const uploadFile = (params, client, res) => {
   uploader.on('progress', function() {
     console.log("progress", uploader.progressMd5Amount,
               uploader.progressAmount, uploader.progressTotal);
+    console.log(Math.round((uploader.progressAmount/uploader.progressTotal)*100))
   });
   uploader.on('end', function() {
     console.log("done uploading");
