@@ -1,46 +1,46 @@
-const AWS = require('aws-sdk')
-const zlib = require('zlib')
-const fs = require('fs')
-const s3Stream = require('s3-upload-stream')(new AWS.S3())
+const s3 = require('s3');
 const s3_creds = require('../../../config/aws-config')
 
-AWS.config.update({accessKeyId: s3_creds.aws_access_key_id, secretAccessKey: s3_creds.aws_secret_access_key})
+ const s3client = s3.createClient({
+ maxAsyncS3: 5,     // this is the default 
+ s3RetryCount: 10,    // this is the default 
+ s3RetryDelay: 1000, // this is the default 
+ multipartUploadThreshold: 20971520, // this is the default (20 MB) 
+ multipartUploadSize: 15728640, // this is the default (15 MB) 
+ s3Options: {
+   accessKeyId: s3_creds.aws_access_key_id,
+   secretAccessKey: s3_creds.aws_secret_access_key,
+   // any other options are passed to new AWS.S3() 
+   // See: http://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/Config.html#constructor-property 
+ },
+});
 
-var read = fs.createReadStream('./../app.js');
-var compress = zlib.createGzip();
-var upload = s3Stream.upload({
-  "Bucket": "khermstad-s3uploader-testbucket",
-  "Key": "key-name"
-});
- 
-// Optional configuration 
-upload.maxPartSize(20971520); // 20 MB 
-upload.concurrentParts(5);
- 
-// Handle errors. 
-upload.on('error', function (error) {
-  console.log(error);
-});
- 
-/* Handle progress. Example details object:
-   { ETag: '"f9ef956c83756a80ad62f54ae5e7d34b"',
-     PartNumber: 5,
-     receivedSize: 29671068,
-     uploadedSize: 29671068 }
-*/
-upload.on('part', function (details) {
-  console.log(details);
-});
- 
-/* Handle upload completion. Example details object:
-   { Location: 'https://bucketName.s3.amazonaws.com/filename.ext',
-     Bucket: 'bucketName',
-     Key: 'filename.ext',
-     ETag: '"bf2acbedf84207d696c8da7dbb205b9f-5"' }
-*/
-upload.on('uploaded', function (details) {
-  console.log(details);
-});
- 
-// Pipe the incoming filestream through compression, and up to S3. 
-read.pipe(compress).pipe(upload);
+const buildParams = (file, bucket, key) => {
+    var params = {
+        localFile: file,
+
+        s3Params: {
+            Bucket: bucket,
+            Key: key,
+        }
+    }
+    return params;
+}
+
+const uploadFile = (params) => {
+ const uploader = client.uploadFile(params);
+  uploader.on('error', function(err) {
+    console.error("unable to upload:", err.stack);
+  });
+  uploader.on('progress', function() {
+    console.log("progress", uploader.progressMd5Amount,
+              uploader.progressAmount, uploader.progressTotal);
+  });
+  uploader.on('end', function() {
+    console.log("done uploading");
+  }); 
+}
+
+//uploadFile(buildParams("README.md", s3_creds.s3_bucket, "readme3.md"))
+
+module.exports = s3client;
