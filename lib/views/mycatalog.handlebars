@@ -1,7 +1,7 @@
 {{#if req.session.email}}
     <h2>My Catalog:</h2>
 
-    {{req}}
+    {{req.session.email}}
     
     {{else}}
      <div class="alert alert-danger">
