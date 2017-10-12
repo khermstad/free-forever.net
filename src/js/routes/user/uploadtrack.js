@@ -21,8 +21,7 @@ const s3_creds = require('../../../../config/aws-config')
 // Track schema for Sequelize
 const Track = db.define('track', track.schema, {
     timestamps: true,
-    updatedAt: 'updatedat',
-    createdAt: 'createdat'
+    createdAt: 'created'
 })
 
 // inserts Track info into postgres DB using Sequelize ORM
