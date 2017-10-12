@@ -16,7 +16,16 @@ const schema = {
     },
     description:{
         type: Sequelize.STRING
+    },
+    approved: {
+        type: Sequelize.BOOLEAN,
+        defaultValue: false
+    },
+    downloads: {
+        type: Sequelize.INTEGER,
+        defaultValue: 0
     }
+
 }
 
 module.exports = {schema}

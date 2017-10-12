@@ -12,7 +12,7 @@ const storage = multer.diskStorage({
 })
 const upload = multer({storage: storage})
 
-const track = require('./../models/Track')
+const track = require('./../../models/Track')
 const db = require('../db')
 
 const s3client = require('./../s3uploader/s3client')
