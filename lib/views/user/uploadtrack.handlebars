@@ -13,11 +13,15 @@
 <h2>Upload New Track: (MP3 only, 20mb max)</h2>
     <form action="/uploadtrack" method="post" id="uploadForm" enctype="multipart/form-data">
         <div class="form-group">
-            <label for="email">Title:</label>
+            <label for="title">Track Title:</label>
             <input type="text" name="title" class="form-control" placeholder="Enter a title" required>
         </div>
+         <div class="form-group">
+            <label for="Description">Track Description:</label>
+            <input type="text" name="description" class="form-control" placeholder="Enter a title" required>
+        </div>
         <div class="form-group">
-            <label for="displayedName">Displayed Name:</label>
+            <label for="file">File To Upload:</label>
             <input type="file" name="file" class="form-control" required>
         </div>
         <div class="form-group">
