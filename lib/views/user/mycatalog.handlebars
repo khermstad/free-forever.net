@@ -1,0 +1,11 @@
+{{#if req.session.email}}
+    <h2>My Catalog:</h2>
+
+    {{req.session.email}}
+    
+    {{else}}
+     <div class="alert alert-danger">
+                <strong>Not Logged In.</strong> 
+            </div>
+    <h4>Log-in <a href="/login">here</a></h4>
+{{/if}}

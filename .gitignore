@@ -1,5 +1,5 @@
 /node_modules/
 /lib/js/
-/.idea/
-db-config.js
-
+/.idea/ 
+/config/
+/uploads/

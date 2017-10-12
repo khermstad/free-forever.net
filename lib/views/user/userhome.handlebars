@@ -1,5 +1,6 @@
-{{#if email}}
-    {{email}}
+{{#if req.session.email}}
+    {{req.session.email}}
+
 
     {{else}}
      <div class="alert alert-danger">
