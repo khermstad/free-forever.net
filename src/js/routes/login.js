@@ -48,6 +48,7 @@ router.post("/", (req, res) => {
                 if (isValid){
                     req.session.email = email;
                     return res.render('user/mycatalog', {req: req})
+
                 }
                 else{
                     return res.render('login', {login_error_message: "Incorrect Password"})
