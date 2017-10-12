@@ -37,7 +37,7 @@ const isValidPassword = (email, password) => {
     return false;
 }
 
-router.get("/", (req, res) => res.render("login", {email: req.session.email}));
+router.get("/", (req, res) => res.render("login", {req: req}));
 
 router.post("/", (req, res) => {
     const {email, password} = req.body;
@@ -47,7 +47,8 @@ router.post("/", (req, res) => {
             isValidPassword(email, password).then(isValid =>{
                 if (isValid){
                     req.session.email = email;
-                    return res.render('mycatalog', {email: req.session.email})
+                    return res.render('user/mycatalog', {req: req})
+
                 }
                 else{
                     return res.render('login', {login_error_message: "Incorrect Password"})

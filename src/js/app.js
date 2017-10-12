@@ -12,10 +12,10 @@ const catalog = require("./routes/catalog.js");
 const artists = require("./routes/artists.js");
 const register = require("./routes/register.js");
 const login = require("./routes/login.js");
-const mycatalog = require("./routes/mycatalog.js");
-const uploadtrack = require("./routes/uploadtrack.js");
-const mysettings = require("./routes/mysettings.js");
-const userhome = require("./routes/userhome.js");
+const mycatalog = require("./routes/user/mycatalog.js");
+const uploadtrack = require("./routes/user/uploadtrack.js");
+const mysettings = require("./routes/user/mysettings.js");
+const userhome = require("./routes/user/userhome.js");
 
 
 // port settings
@@ -48,7 +48,7 @@ app.use("/login", login);
 app.use("/mycatalog", mycatalog)
 app.use("/uploadtrack", uploadtrack)
 app.use("/mysettings", mysettings)
-app.use('/userhome', userhome)
+app.use("/userhome", userhome)
 
 
 app.get("/signout", (req, res) => {
