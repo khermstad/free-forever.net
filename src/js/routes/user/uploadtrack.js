@@ -57,16 +57,13 @@ const uploadFile = (params, client, req, res) => {
     res.render('user/uploadtrack', {upload_error_message: "File upload failed."})
   });
   uploader.on('progress', function() {
-    console.log("progress", uploader.progressMd5Amount,
-              uploader.progressAmount, uploader.progressTotal);
-    console.log(Math.round((uploader.progressAmount/uploader.progressTotal)*100))
+    // console.log("progress", uploader.progressMd5Amount,
+    //           uploader.progressAmount, uploader.progressTotal);
+    // console.log(Math.round((uploader.progressAmount/uploader.progressTotal)*100))
   });
   uploader.on('end', function() {
-
-
     createTrackInDB(req.session.email, params.s3Params.Key, params.s3Params.Bucket, req.body.title, req.body.description)
-    console.log("done uploading");
-    fs.unlink("./uploads/"+req.file.originalname)
+    fs.unlink("./uploads/"+req.file.originalname) // deletes local file
     res.render('user/uploadtrack', {upload_success_message: "File upload complete."})
   }); 
 }
