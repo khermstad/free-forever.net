@@ -27,14 +27,13 @@ const Track = db.define('track', track.schema, {
 })
 
 // inserts Track info into postgres DB using Sequelize ORM
-const createTrackInDB = (email, s3key, bucket, title, description, timestamp) => {
+const createTrackInDB = (email, s3key, bucket, title, description) => {
     Track.create({
         email: email,
         s3key: s3key,
         bucket: bucket,
         title: title,
         description: description,
-        timestamp: timestamp
     })
 }
 
