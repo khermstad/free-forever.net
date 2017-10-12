@@ -1,5 +1,6 @@
 const express = require("express");
 const router = express.Router();
+const fs = require('fs')
 
 const multer = require('multer')
 const storage = multer.diskStorage({
@@ -21,7 +22,8 @@ const s3_creds = require('../../../../config/aws-config')
 // Track schema for Sequelize
 const Track = db.define('track', track.schema, {
     timestamps: true,
-    createdAt: 'created'
+    createdAt: 'created',
+    updatedAt: false
 })
 
 // inserts Track info into postgres DB using Sequelize ORM
@@ -65,6 +67,7 @@ const uploadFile = (params, client, req, res) => {
 
     createTrackInDB(req.session.email, params.s3Params.Key, params.s3Params.Bucket, req.body.title, req.body.description)
     console.log("done uploading");
+    fs.unlink("./uploads/"+req.file.originalname)
     res.render('user/uploadtrack', {upload_success_message: "File upload complete."})
   }); 
 }
