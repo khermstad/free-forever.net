@@ -1,5 +1,6 @@
 const express = require("express");
 const router = express.Router();
+
 const multer = require('multer')
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
@@ -14,10 +15,15 @@ const upload = multer({storage: storage})
 const track = require('./../models/Track')
 const db = require('../db')
 
+const s3client = require('./../s3uploader/s3client')
+const s3_creds = require('../../../config/aws-config')
+
+// Track schema for Sequelize
 const Track = db.define('track', track.schema, {
     timestamps: false
 })
 
+// inserts Track info into postgres DB using Sequelize ORM
 const createTrackInDB = (email, s3key, bucket, title, description) => {
     Track.create({
         email: email,
@@ -28,9 +34,7 @@ const createTrackInDB = (email, s3key, bucket, title, description) => {
     })
 }
 
-const s3client = require('./../s3uploader/s3client')
-const s3_creds = require('../../../config/aws-config')
-
+// helper method to bulid Param method for uploadFile method
 const buildParams = (file, bucket, key) => {
     var params = {
         localFile: "uploads/" + file,
@@ -65,8 +69,7 @@ router.get("/", (req, res) => res.render("user/uploadtrack", {req: req}))
 
 
 router.post("/", upload.single('file'), (req, res) => {
-    console.log(req.file)
-    const trackKey = `users/${req.session.email}/tracks/${req.file.originalname}`
+    const trackKey = `users/${req.session.email}/tracks/${req.body.title}.mp3`
     uploadFile(buildParams(req.file.originalname, s3_creds.s3_bucket, trackKey), s3client, req, res)
 })
 
