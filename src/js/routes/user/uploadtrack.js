@@ -13,10 +13,10 @@ const storage = multer.diskStorage({
 const upload = multer({storage: storage})
 
 const track = require('./../../models/Track')
-const db = require('../db')
+const db = require('../../db')
 
-const s3client = require('./../s3uploader/s3client')
-const s3_creds = require('../../../config/aws-config')
+const s3client = require('./../../s3uploader/s3client')
+const s3_creds = require('../../../../config/aws-config')
 
 // Track schema for Sequelize
 const Track = db.define('track', track.schema, {
