@@ -38,6 +38,7 @@ const createTrackInDB = (email, s3key, bucket, title, description) => {
 }
 
 
+
 // findTrack helps check DB for s3key before trying to upload
 const isUniqueTrack = (s3key) => {
     return Track.count({
@@ -74,6 +75,7 @@ const uploadFile = (params, client, req, res) => {
   });
   uploader.on('progress', function() {
 
+
     // console.log("progress", uploader.progressMd5Amount,
     //           uploader.progressAmount, uploader.progressTotal);
     // console.log(Math.round((uploader.progressAmount/uploader.progressTotal)*100))
@@ -81,6 +83,7 @@ const uploadFile = (params, client, req, res) => {
   uploader.on('end', function() {
     createTrackInDB(req.session.email, params.s3Params.Key, params.s3Params.Bucket, req.body.title, req.body.description)
     fs.unlink("./uploads/"+req.file.originalname) // deletes local file
+
 
     res.render('user/uploadtrack', {upload_success_message: "File upload complete."})
   }); 
@@ -93,6 +96,7 @@ router.post("/", upload.single('file'), (req, res) => {
     const trackKey = `users/${req.session.email}/tracks/${req.body.title}.mp3`
 
 
+
     // first check db for trackKey (as s3key)
     isUniqueTrack(trackKey).then(isUnique => {
         if (isUnique) {
@@ -103,7 +107,6 @@ router.post("/", upload.single('file'), (req, res) => {
         }
     })
 
-    
 
 })
 
