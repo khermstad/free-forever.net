@@ -14,15 +14,15 @@
     <form action="/uploadtrack" method="post" id="uploadForm" enctype="multipart/form-data">
         <div class="form-group">
             <label for="title">Track Title:</label>
-            <input type="text" name="title" class="form-control" placeholder="Enter a title" required>
+            <input type="text" name="title" class="form-control" placeholder="Enter a title" pattern="[a-zA-Z0-9 ,.!?]+" title="Can only contain letters, numbers or basic punctuation (.,!?)" required>
         </div>
          <div class="form-group">
             <label for="Description">Track Description:</label>
-            <input type="text" name="description" class="form-control" placeholder="Enter a title" required>
+            <input type="text" name="description" class="form-control" placeholder="Enter a description" required>
         </div>
         <div class="form-group">
             <label for="file">File To Upload:</label>
-            <input type="file" name="file" class="form-control" required>
+            <input type="file" name="file" class="form-control" accept=".mp3" required>
         </div>
         <div class="form-group">
             <button type="submit" class="btn btn-primary btn-sm">Submit</button>
