@@ -1,20 +1,23 @@
 {{#if req.session.email}}
-    <h2>My Catalog:</h2>
+<h2>My Catalog:</h2>
 
-    {{#each tracks}}
-    <div class="panel panel-default">
-        <div class="panel-heading">{{this.dataValues.title}}</div>
-        <div class="panel-body">
-            <ul>
+{{#each tracks}}
+<div class="panel panel-default">
+    <div class="panel-heading">{{this.dataValues.title}}</div>
+    <div class="panel-body">
+        <ul>
             <li>Track Description: {{this.dataValues.description}} </li>
-            <li><a href="{{this.s3link}}">Download</a> </li>
-            </ul>
-        </div>
+                           <audio controls>
+                <source src="{{this.s3link}}" type="audio/mpeg"> Your browser does not support the audio element.
+            </audio>
+        </ul>
     </div>
-    {{/each}} 
-    {{else}}
-     <div class="alert alert-danger">
-                <strong>Not Logged In.</strong> 
-            </div>
-    <h4>Log-in <a href="/login">here</a></h4>
+</div>
+{{/each}} {{else}}
+<div class="alert alert-danger">
+    <strong>Not Logged In.</strong>
+</div>
+<h4>Log-in
+    <a href="/login">here</a>
+</h4>
 {{/if}}
