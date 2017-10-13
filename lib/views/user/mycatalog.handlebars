@@ -1,11 +1,46 @@
 {{#if req.session.email}}
-    <h2>My Catalog:</h2>
+<h2>My Catalog:</h2>
+<hr>
 
-    {{req.session.email}}
-    
-    {{else}}
-     <div class="alert alert-danger">
-                <strong>Not Logged In.</strong> 
-            </div>
-    <h4>Log-in <a href="/login">here</a></h4>
+<h3>Approved Tracks:</h3>
+{{#each tracks}}
+{{#if this.dataValues.approved}}
+<div class="panel panel-default">
+    <div class="panel-heading">{{this.dataValues.title}}</div>
+    <div class="panel-body">
+        <ul>
+            <li>Track Description: {{this.dataValues.description}} </li>
+            <audio controls>
+                <source src="{{this.s3link}}" type="audio/mpeg"> Your browser does not support the audio element.
+            </audio>
+        </ul>
+    </div>
+</div>
 {{/if}}
+{{/each}}
+
+<h3>Pending:</h3>
+{{#each tracks}}
+{{#if this.dataValues.approved}}
+{{else}}
+<div class="panel panel-default">
+    <div class="panel-heading">{{this.dataValues.title}}</div>
+    <div class="panel-body">
+        <ul>
+            <li>Track Description: {{this.dataValues.description}} </li>
+            <audio controls>
+                <source src="{{this.s3link}}" type="audio/mpeg"> Your browser does not support the audio element.
+            </audio>
+        </ul>
+    </div>
+</div>
+{{/if}}
+{{/each}} {{else}}
+<div class="alert alert-danger">
+    <strong>Not Logged In.</strong>
+</div>
+<h4>Log-in
+    <a href="/login">here</a>
+</h4>
+{{/if}}
+

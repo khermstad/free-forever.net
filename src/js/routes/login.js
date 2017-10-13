@@ -47,7 +47,9 @@ router.post("/", (req, res) => {
             isValidPassword(email, password).then(isValid =>{
                 if (isValid){
                     req.session.email = email;
-                    return res.render('user/mycatalog', {req: req})
+
+                    return res.render('user/userhome', {req: req})
+
 
                 }
                 else{
