@@ -16,7 +16,7 @@ const upload = multer({storage: storage})
 const track = require('./../../models/Track')
 const db = require('../../db')
 
-const s3client = require('./../../s3uploader/s3client')
+const s3client = require('./../../s3client/s3client')
 const s3_creds = require('../../../../config/aws-config')
 
 // inserts Track info into postgres DB using Sequelize ORM

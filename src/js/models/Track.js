@@ -25,9 +25,6 @@ const schema = {
         type: Sequelize.INTEGER,
         defaultValue: 0
     }
- 
 }
-
-
 
 module.exports = {schema}

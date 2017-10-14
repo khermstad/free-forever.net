@@ -1,5 +1,5 @@
 const s3 = require('s3');
-const s3_creds = require('../../../config/aws-config')
+const s3_creds = require('./../../../config/aws-config')
 
  const s3client = s3.createClient({
  maxAsyncS3: 5,     // this is the default 
