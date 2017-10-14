@@ -19,13 +19,6 @@ const db = require('../../db')
 const s3client = require('./../../s3uploader/s3client')
 const s3_creds = require('../../../../config/aws-config')
 
-// Track schema for Sequelize
-const Track = db.define('track', track.schema, {
-    timestamps: true,
-    createdAt: 'created',
-    updatedAt: false
-})
-
 // inserts Track info into postgres DB using Sequelize ORM
 const createTrackInDB = (email, s3key, bucket, title, description) => {
     Track.create({
@@ -36,7 +29,12 @@ const createTrackInDB = (email, s3key, bucket, title, description) => {
         description: description,
     })
 }
-
+// Track schema for Sequelize
+const Track =  db.define('track', track.schema, {
+    timestamps: true,
+    createdAt: 'created',
+    updatedAt: false
+})
 
 // findTrack helps check DB for s3key before trying to upload
 const isUniqueTrack = (s3key) => {
@@ -88,11 +86,8 @@ const uploadFile = (params, client, req, res) => {
 
 router.get("/", (req, res) => res.render("user/uploadtrack", {req: req}))
 
-
 router.post("/", upload.single('file'), (req, res) => {
     const trackKey = `users/${req.session.email}/tracks/${req.body.title}.mp3`
-
-
     // first check db for trackKey (as s3key)
     isUniqueTrack(trackKey).then(isUnique => {
         if (isUnique) {
@@ -102,9 +97,6 @@ router.post("/", upload.single('file'), (req, res) => {
             res.render('user/uploadtrack', {req: req, upload_failure_message: "That track already exists. All titles must be unique."})
         }
     })
-
-    
-
 })
 
 module.exports = router;

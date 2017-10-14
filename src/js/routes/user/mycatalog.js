@@ -3,14 +3,15 @@ const router = express.Router();
 const track = require('./../../models/Track')
 const db = require('../../db')
 
-router.get("/", (req, res) => {
-    getTracksByEmail(req.session.email, req, res)
-})
-
-const Track = db.define('track', track.schema, {
+// Track schema for Sequelize
+const Track =  db.define('track', track.schema, {
     timestamps: true,
     createdAt: 'created',
     updatedAt: false
+})
+
+router.get("/", (req, res) => {
+    getTracksByEmail(req.session.email, req, res)
 })
 
 const getTracksByEmail = (email, req, res) => {
