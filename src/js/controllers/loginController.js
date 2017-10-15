@@ -7,6 +7,29 @@ const User = db.define('user', user.schema, {
     timestamps: false
 })
 
+// controller
+export const index = (req, res) => res.render('login', {req: req})
+
+export const login = (req, res) => {
+    const {email, password} = req.body;
+        isValidEmail(email).then(isValid => {
+            if(isValid) {
+                isValidPassword(email, password).then(isValid =>{
+                    if (isValid){
+                        req.session.email = email;
+                        return res.render('user/userhome', {req: req})
+                    }
+                    else{
+                        return res.render('login', {login_error_message: "Incorrect Password"})
+                    }
+                })
+            }
+            else{
+                return res.render('login', {login_error_message: "Unrecognized email."})
+            }
+        }) 
+}
+
 const isValidEmail = (email) => {
     return User.count({
             where: {
@@ -33,29 +56,4 @@ const isValidPassword = (email, password) => {
         return isPassword;
     })
     return false;
-}
-
-export const index = (req, res) => res.render('login', {req: req})
-
-export const login = (req, res) => {
-    const {email, password} = req.body;
-    
-        isValidEmail(email).then(isValid => {
-            if(isValid) {
-                isValidPassword(email, password).then(isValid =>{
-                    if (isValid){
-                        req.session.email = email;
-                        return res.render('user/userhome', {req: req})
-    
-                    }
-                    else{
-                        return res.render('login', {login_error_message: "Incorrect Password"})
-                    }
-                })
-            }
-            else{
-                return res.render('login', {login_error_message: "Unrecognized email."})
-            }
-        }) 
-        
 }
