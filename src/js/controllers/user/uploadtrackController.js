@@ -30,8 +30,6 @@ export const uploadtrack_post = (req, res) => {
     })
 }
 
-
-
 // inserts Track info into postgres DB using Sequelize ORM
 const createTrackInDB = (email, s3key, bucket, title, description) => {
     Track.create({
@@ -85,7 +83,6 @@ const uploadFile = (params, client, req, res) => {
   uploader.on('end', function() {
     createTrackInDB(req.session.email, params.s3Params.Key, params.s3Params.Bucket, req.body.title, req.body.description)
     fs.unlink("./uploads/"+req.file.originalname) // deletes local file
-
     res.render('user/uploadtrack', {upload_success_message: "File upload complete.", req: req})
   }); 
 }
