@@ -5,7 +5,7 @@
 <h3>Approved Tracks:</h3>
 {{#each tracks}}
 {{#if this.dataValues.approved}}
-<div class="panel panel-default">
+<div class="panel panel-success">
     <div class="panel-heading">{{this.dataValues.title}}</div>
     <div class="panel-body">
         <ul>
@@ -14,6 +14,7 @@
                 <source src="{{this.s3link}}" type="audio/mpeg"> Your browser does not support the audio element.
             </audio>
         </ul>
+         <button class="btn btn-primary btn-sm">Remove</button> 
     </div>
 </div>
 {{/if}}
@@ -23,9 +24,10 @@
 <h3>Pending:</h3>
 {{#each tracks}}
 {{#if this.dataValues.approved}}
-{{#if this.dataValues.rejrected}}
 {{else}}
-<div class="panel panel-default">
+{{#if this.dataValues.rejected}}
+{{else}}
+<div class="panel panel-warning">
     <div class="panel-heading">{{this.dataValues.title}}</div>
     <div class="panel-body">
         <ul>
@@ -34,6 +36,7 @@
                 <source src="{{this.s3link}}" type="audio/mpeg"> Your browser does not support the audio element.
             </audio>
         </ul>
+         <button class="btn btn-primary btn-sm">Remove</button> 
     </div>
 </div>
 {{/if}}
@@ -51,8 +54,9 @@
             <li>
                 Track Description: {{this.dataValues.description}}
             </li>
+            <li>Reason For Rejection: {{this.dataValues.rejectionReason}}</li>
         </ul>
-       <button>Remove</button> 
+         <button class="btn btn-primary btn-sm">Remove</button> 
     </div>
 </div>
 {{/if}}
