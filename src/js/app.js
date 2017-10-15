@@ -19,7 +19,7 @@ const userhome = require("./routes/user/userhome.js");
 
 
 // port settings
-const port = 5000;
+const port = 3000;
 
 // sessions
 app.use(session({ secret: 'keyboard cat', cookie: { maxAge: 24 * 60 * 60 * 1000}, resave: true, saveUninitialized: true}))
