@@ -18,10 +18,12 @@
 </div>
 {{/if}}
 {{/each}}
+<hr>
 
 <h3>Pending:</h3>
 {{#each tracks}}
 {{#if this.dataValues.approved}}
+{{#if this.dataValues.rejrected}}
 {{else}}
 <div class="panel panel-default">
     <div class="panel-heading">{{this.dataValues.title}}</div>
@@ -35,7 +37,29 @@
     </div>
 </div>
 {{/if}}
-{{/each}} {{else}}
+{{/if}}
+{{/each}}
+<hr>
+
+<h3>Rejected:</h3>
+{{#each tracks}}
+{{#if this.dataValues.rejected}}
+<div class="panel panel-danger">
+    <div class="panel-heading">{{this.dataValues.title}}</div>
+    <div class="panel-body">
+        <ul>
+            <li>
+                Track Description: {{this.dataValues.description}}
+            </li>
+        </ul>
+       <button>Remove</button> 
+    </div>
+</div>
+{{/if}}
+{{/each}} 
+
+
+{{else}}
 <div class="alert alert-danger">
     <strong>Not Logged In.</strong>
 </div>

@@ -21,6 +21,10 @@ const schema = {
         type: Sequelize.BOOLEAN,
         defaultValue: false
     },
+    rejected: {
+        type: Sequelize.BOOLEAN,
+        defaultValue: false
+    },
     downloads: {
         type: Sequelize.INTEGER,
         defaultValue: 0
