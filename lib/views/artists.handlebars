@@ -1,1 +1,12 @@
 <h1>Artists</h1>
+<hr> {{#each artists}}
+<div class="panel panel-default">
+    <div class="panel-heading"><a href="/artist/{{this.dataValues.displayedname}}">{{this.dataValues.displayedname}}</a>
+    </div>
+    <div class="panel-body">
+        <ul>
+            <li>email: <a href="mailto:{{this.dataValues.email}}">{{this.dataValues.email}}</a></li>
+        </ul>
+    </div>
+</div>
+{{/each}}
