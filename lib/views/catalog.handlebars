@@ -1,17 +1,18 @@
 <h1>Catalog</h1>
-<hr>
-{{#each tracks}}
+<hr> {{#each tracks}}
 <div class="panel panel-default">
-<div class="panel-heading">{{this.dataValues.title}} by <a href="/artist/{{this.dataValues.email}}">{{this.dataValues.email}}</a></div>
-<div class="panel-body">
+    <div class="panel-heading">{{this.dataValues.title}} by
+        <a href="/artist/{{this.dataValues.email}}">{{this.dataValues.email}}</a>
+    </div>
+    <div class="panel-body">
         <ul>
             <li>Track Description: {{this.dataValues.description}} </li>
             <audio controls>
                 <source src="{{this.s3link}}" type="audio/mpeg"> Your browser does not support the audio element.
             </audio>
-            <li>Downloads: {{this.dataValues.downloads}}</li>
             <hr>
-            <button class="btn btn-primary btn-sm">Download</button>
+            <a href="{{this.s3link}}">Download</a> 
+
         </ul>
     </div>
 </div>

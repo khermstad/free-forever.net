@@ -17,12 +17,11 @@ const uploadtrack = require("./routes/user/uploadtrack.js");
 const mysettings = require("./routes/user/mysettings.js");
 const userhome = require("./routes/user/userhome.js");
 
-
 // port settings
 const port = 3000;
 
 // sessions
-app.use(session({ secret: 'keyboard cat', cookie: { maxAge: 24 * 60 * 60 * 1000}, resave: true, saveUninitialized: true}))
+app.use(session({ secret: 'supersecretkeyissupersecret', cookie: { maxAge: 24 * 60 * 60 * 1000}, resave: true, saveUninitialized: true}))
 
 //body-parser setting
 app.use(parser.urlencoded({extended:true}));
@@ -49,7 +48,6 @@ app.use("/mycatalog", mycatalog)
 app.use("/uploadtrack", uploadtrack)
 app.use("/mysettings", mysettings)
 app.use("/userhome", userhome)
-
 
 app.get("/signout", (req, res) => {
     req.session.destroy(console.log('session destroyed'))
