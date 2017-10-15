@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
+const mysettings_controller = require('./../../controllers/user/mysettingsController')
 
-router.get("/", (req, res) => res.render("user/mysettings", {req: req}))
+router.get("/", mysettings_controller.index)
 
 module.exports = router;
