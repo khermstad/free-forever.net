@@ -9,7 +9,7 @@ const Track =  db.define('track', track.schema, {
 })
 
 export const index = (req, res) => getTracksByEmail(req.session.email, req, res)
-
+export const deleteTrack = (req, res) => res.send(req.params)
 
 const getTracksByEmail = (email, req, res) => {
     return Track.findAll({
