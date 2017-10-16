@@ -28,6 +28,9 @@ const schema = {
     downloads: {
         type: Sequelize.INTEGER,
         defaultValue: 0
+    },
+    trackid: {
+        type: Sequelize.INTEGER
     }
 }
 

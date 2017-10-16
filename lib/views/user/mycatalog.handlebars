@@ -3,8 +3,7 @@
 <hr>
 
 <h3>Approved Tracks:</h3>
-{{#each tracks}}
-{{#if this.dataValues.approved}}
+{{#each tracks}} {{#if this.dataValues.approved}}
 <div class="panel panel-success">
     <div class="panel-heading">{{this.dataValues.title}}</div>
     <div class="panel-body">
@@ -14,19 +13,18 @@
                 <source src="{{this.s3link}}" type="audio/mpeg"> Your browser does not support the audio element.
             </audio>
         </ul>
-         <button class="btn btn-primary btn-sm">Remove</button> 
+
+        <form action="/mycatalog/{{this.dataValues.trackid}}">
+            <input type="submit" class="btn btn-primary btn-sm" value="Remove Track" />
+        </form>
     </div>
+
 </div>
-{{/if}}
-{{/each}}
+{{/if}} {{/each}}
 <hr>
 
 <h3>Pending:</h3>
-{{#each tracks}}
-{{#if this.dataValues.approved}}
-{{else}}
-{{#if this.dataValues.rejected}}
-{{else}}
+{{#each tracks}} {{#if this.dataValues.approved}} {{else}} {{#if this.dataValues.rejected}} {{else}}
 <div class="panel panel-warning">
     <div class="panel-heading">{{this.dataValues.title}}</div>
     <div class="panel-body">
@@ -36,17 +34,15 @@
                 <source src="{{this.s3link}}" type="audio/mpeg"> Your browser does not support the audio element.
             </audio>
         </ul>
-         <button class="btn btn-primary btn-sm">Remove</button> 
-    </div>
+ <form action="/mycatalog/{{this.dataValues.trackid}}">
+            <input type="submit" class="btn btn-primary btn-sm" value="Remove Track" />
+        </form>    </div>
 </div>
-{{/if}}
-{{/if}}
-{{/each}}
+{{/if}} {{/if}} {{/each}}
 <hr>
 
 <h3>Rejected:</h3>
-{{#each tracks}}
-{{#if this.dataValues.rejected}}
+{{#each tracks}} {{#if this.dataValues.rejected}}
 <div class="panel panel-danger">
     <div class="panel-heading">{{this.dataValues.title}}</div>
     <div class="panel-body">
@@ -56,14 +52,11 @@
             </li>
             <li>Reason For Rejection: {{this.dataValues.rejectionReason}}</li>
         </ul>
-         <button class="btn btn-primary btn-sm">Remove</button> 
-    </div>
+ <form action="/mycatalog/{{this.dataValues.trackid}}">
+            <input type="submit" class="btn btn-primary btn-sm" value="Remove Track" />
+        </form>    </div>
 </div>
-{{/if}}
-{{/each}} 
-
-
-{{else}}
+{{/if}} {{/each}} {{else}}
 <div class="alert alert-danger">
     <strong>Not Logged In.</strong>
 </div>
@@ -71,4 +64,3 @@
     <a href="/login">here</a>
 </h4>
 {{/if}}
-

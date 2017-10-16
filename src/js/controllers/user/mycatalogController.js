@@ -10,6 +10,7 @@ const Track =  db.define('track', track.schema, {
 
 export const index = (req, res) => getTracksByEmail(req.session.email, req, res)
 
+
 const getTracksByEmail = (email, req, res) => {
     return Track.findAll({
         where: {
