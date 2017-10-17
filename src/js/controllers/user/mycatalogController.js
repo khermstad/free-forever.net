@@ -23,7 +23,6 @@ export const deleteTrack = (req, res) => {
     .then(getTracksByEmail(req.session.email, req, res))
 } 
 
-
 const gets3keyFromTrackId = (trackid) => {
     return Track.findOne({
         where: {
