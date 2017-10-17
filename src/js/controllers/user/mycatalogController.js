@@ -1,6 +1,10 @@
 const track = require('./../../models/Track')
 const db = require('../../db')
 
+//s3
+const s3client = require('./../../s3client/s3client')
+const s3_creds = require('../../../../config/aws-config')
+
 // Track schema for Sequelize
 const Track =  db.define('track', track.schema, {
     timestamps: true,
@@ -9,7 +13,29 @@ const Track =  db.define('track', track.schema, {
 })
 
 export const index = (req, res) => getTracksByEmail(req.session.email, req, res)
-export const deleteTrack = (req, res) => res.send(req.params)
+
+export const deleteTrack = (req, res) => {
+    Track.destroy({
+        where : {
+            trackid: req.params.trackid
+        }
+    })
+    .then(deleteTrackFromS3(s3key))
+    .then(res.render('user/mycatalog', {req: req}))
+} 
+
+const deleteTrackFromS3 = (s3key) => {
+
+}
+
+const gets3keyfromTrackId = (trackid) => {  
+    Track.findOne({
+        where: {
+            trackid: trackid
+        }
+    })
+    .then(track => track.s3key)
+}
 
 const getTracksByEmail = (email, req, res) => {
     return Track.findAll({

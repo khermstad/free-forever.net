@@ -13,8 +13,7 @@
                 <source src="{{this.s3link}}" type="audio/mpeg"> Your browser does not support the audio element.
             </audio>
         </ul>
-
-        <form action="/mycatalog/deleteTrack/{{this.dataValues.trackid}}">
+        <form action="/mycatalog/delete/{{this.dataValues.trackid}}">
             <input type="submit" class="btn btn-primary btn-sm" value="Remove Track" />
         </form>
     </div>
@@ -34,7 +33,7 @@
                 <source src="{{this.s3link}}" type="audio/mpeg"> Your browser does not support the audio element.
             </audio>
         </ul>
-         <form action="/mycatalog/deleteTrack/{{this.dataValues.trackid}}">
+        <form action="/mycatalog/delete/{{this.dataValues.trackid}}">
             <input type="submit" class="btn btn-primary btn-sm" value="Remove Track" />
         </form>
     </div>
@@ -53,7 +52,7 @@
             </li>
             <li>Reason For Rejection: {{this.dataValues.rejectionReason}}</li>
         </ul>
-        <form action="/mycatalog/deleteTrack/{{this.dataValues.trackid}}">
+        <form action="/mycatalog/delete/{{this.dataValues.trackid}}">
             <input type="submit" class="btn btn-primary btn-sm" value="Remove Track" />
         </form>
     </div>
