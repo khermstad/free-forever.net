@@ -20,22 +20,9 @@ export const deleteTrack = (req, res) => {
             trackid: req.params.trackid
         }
     })
-    .then(deleteTrackFromS3(s3key))
     .then(res.render('user/mycatalog', {req: req}))
 } 
 
-const deleteTrackFromS3 = (s3key) => {
-
-}
-
-const gets3keyfromTrackId = (trackid) => {  
-    Track.findOne({
-        where: {
-            trackid: trackid
-        }
-    })
-    .then(track => track.s3key)
-}
 
 const getTracksByEmail = (email, req, res) => {
     return Track.findAll({
