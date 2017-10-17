@@ -15,7 +15,7 @@ const Track =  db.define('track', track.schema, {
 export const index = (req, res) => getTracksByEmail(req.session.email, req, res)
 
 export const deleteTrack = (req, res) => {
-    Track.destroy({
+    return Track.destroy({
         where : {
             trackid: req.params.trackid
         }
