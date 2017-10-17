@@ -24,6 +24,17 @@ export const deleteTrack = (req, res) => {
 } 
 
 
+const gets3keyFromTrackId = (trackid) => {
+    return Track.findOne({
+        where: {
+            trackid: trackid
+        }
+    })
+    .then(track => {
+        return track.s3key
+    })
+}
+
 const getTracksByEmail = (email, req, res) => {
     return Track.findAll({
         where: {
