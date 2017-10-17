@@ -84,7 +84,7 @@ const uploadFile = (params, client, req, res) => {
   });
   uploader.on('end', function() {
     createTrackInDB(req.session.email, params.s3Params.Key, params.s3Params.Bucket, req.body.title, req.body.description)
-    fs.unlink("./uploads/"+req.file.originalname) // deletes local file
+    fs.unlink("uploads/"+req.file.originalname) // deletes local file
     res.render('user/uploadtrack', {upload_success_message: "File upload complete.", req: req})
   }); 
 }

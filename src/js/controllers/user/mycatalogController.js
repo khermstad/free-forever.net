@@ -20,7 +20,7 @@ export const deleteTrack = (req, res) => {
             trackid: req.params.trackid
         }
     })
-    .then(res.render('user/mycatalog', {req: req}))
+    .then(getTracksByEmail(req.session.email, req, res))
 } 
 
 
