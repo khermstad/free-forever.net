@@ -1,7 +1,35 @@
 <h2>Admin Panel:</h2>
 <hr>
-{{#each tracks}}
-    <p>
-    {{this.dataValues.s3key}}
-    </p>
-{{/each}}
+
+<h4>Approved:</h4>
+{{#each tracks}} {{#if this.dataValues.approved}}
+<div class="panel panel-success">
+    <div class="panel-heading">{{this.dataValues.title}}</div>
+    <div class="panel-body">
+        <ul>
+            <li>Track Description: {{this.dataValues.description}} </li>
+            <audio controls>
+                <source src="{{this.s3link}}" type="audio/mpeg"> Your browser does not support the audio element.
+            </audio>
+        </ul>
+    </div>
+
+</div>
+{{/if}} {{/each}}
+<hr>
+<h4>Pending:</h4>
+{{#each tracks}} {{#if this.dataValues.approved}} {{else}}
+<div class="panel panel-warning">
+    <div class="panel-heading">{{this.dataValues.title}}</div>
+    <div class="panel-body">
+        <ul>
+            <li>Track Description: {{this.dataValues.description}} </li>
+            <audio controls>
+                <source src="{{this.s3link}}" type="audio/mpeg"> Your browser does not support the audio element.
+            </audio>
+        </ul>
+      
+    </div>
+</div>
+{{/if}} {{/each}}
+<hr>
