@@ -1,3 +1,4 @@
+{{#if req.session.isValid}}
 <h2>Admin Panel:</h2>
 <hr>
 
@@ -13,6 +14,7 @@
                 <source src="{{this.s3link}}" type="audio/mpeg"> Your browser does not support the audio element.
             </audio>
         </ul>
+        <button class="btn btn-warning">Set Pending</button> <button class="btn btn-danger">Reject</button>
     </div>
 
 </div>
@@ -31,8 +33,32 @@
                 <source src="{{this.s3link}}" type="audio/mpeg"> Your browser does not support the audio element.
             </audio>
         </ul>
+        <button class="btn btn-success">Approve</button> <button class="btn btn-danger">Reject</button>
 
     </div>
 </div>
 {{/each}}
 <hr>
+<h4>Rejected:</h4>
+{{#each rejectedTracks}}
+<div class="panel panel-danger">
+    <div class="panel-heading">{{this.dataValues.title}}</div>
+    <div class="panel-body">
+        <ul>
+            <li>By: {{this.dataValues.email}}</li>
+
+            <li>Track Description: {{this.dataValues.description}} </li>
+            <audio controls>
+                <source src="{{this.s3link}}" type="audio/mpeg"> Your browser does not support the audio element.
+            </audio>
+        </ul>
+        <button class="btn btn-success">Approve</button> <button class="btn btn-warning">Set Pending</button>
+
+    </div>
+</div>
+{{/each}}
+<hr>
+   <h4><a href="/signout">Sign Out of Admin Panel</a></h4>
+{{else}}
+    Login to <a href="/admin">Admin</a>
+{{/if}}

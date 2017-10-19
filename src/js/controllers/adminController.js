@@ -14,14 +14,22 @@ const Track = db.define('track', track.schema, {
 })
 
 // controller
-export const index = (req, res) => res.render('admin/login', {req: req})
-
+export const index = (req, res) => {
+    if (!req.session.isValid){
+        res.render('admin/login', {req: req})
+    }
+    else{
+        return getAllTracks(req, res)
+        
+    }
+}
 export const login = (req, res) => {
     const {admin, adminpass} = req.body
     isValidAdmin(admin, adminpass).then(isValid => {
         if(isValid) {
+            req.session.isValid = true;
             console.log(req.body)
-            return getAllApprovedTracks(req, res)
+            return getAllTracks(req, res)
         }
         else{
             return res.render('admin/login', {admin_login_error_message: "Invalid Admin"})
@@ -43,7 +51,7 @@ const isValidAdmin = (admin, adminpass) => {
         })
 }
 
-const getAllApprovedTracks = (req, res) => {
+const getAllTracks = (req, res) => {
     return Track.findAll()
     .then(tracks => {
         for(let track of tracks){
@@ -58,7 +66,7 @@ const getAllApprovedTracks = (req, res) => {
             if (track.dataValues.approved === true) {
                 approvedTracks.push(track)
             }
-            if (track.dataValues.approved === false && track.dataValues.rejected === false){
+            else if (track.dataValues.approved === false && track.dataValues.rejected === false){
                 pendingTracks.push(track)
             }
             else{
