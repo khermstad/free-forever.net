@@ -49,7 +49,26 @@ const getAllApprovedTracks = (req, res) => {
         for(let track of tracks){
             track.s3link = `https://s3.amazonaws.com/ffm-datastore/${track.dataValues.s3key}`
         }
-        console.log(tracks)
-        res.render("admin/admin", {req: req, tracks: tracks})
+        
+        let approvedTracks = []
+        let pendingTracks = []
+        let rejectedTracks = []
+
+        for (let track of tracks){
+            if (track.dataValues.approved === true) {
+                approvedTracks.push(track)
+            }
+            if (track.dataValues.approved === false && track.dataValues.rejected === false){
+                pendingTracks.push(track)
+            }
+            else{
+                rejectedTracks.push(track)
+            }
+            
+        }
+        
+        res.render("admin/admin", {req: req, approvedTracks: approvedTracks,
+                        pendingTracks: pendingTracks, rejectedTracks: rejectedTracks
+        })
     })
 }
