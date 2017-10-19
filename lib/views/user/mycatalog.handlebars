@@ -41,7 +41,7 @@
 {{/if}} {{/if}} {{/each}}
 <hr>
 
-<h3>Rejected:</h3>
+<h3>Rejected (will be deleted within 24 hours):</h3>
 {{#each tracks}} {{#if this.dataValues.rejected}}
 <div class="panel panel-danger">
     <div class="panel-heading">{{this.dataValues.title}}</div>
@@ -50,7 +50,9 @@
             <li>
                 Track Description: {{this.dataValues.description}}
             </li>
-            <li>Reason For Rejection: {{this.dataValues.rejectionReason}}</li>
+             <audio controls>
+                <source src="{{this.s3link}}" type="audio/mpeg"> Your browser does not support the audio element.
+            </audio>
         </ul>
         <form action="/mycatalog/delete/{{this.dataValues.trackid}}">
             <input type="submit" class="btn btn-primary btn-sm" value="Remove Track" />

@@ -36,6 +36,67 @@ export const login = (req, res) => {
         }
     })
 }
+
+export const setTrackApproved = (req, res) => {
+    return Track.findOne({
+        where: {
+            trackid: req.params.trackid
+        }
+    })
+    .then(track => {
+        // Check if record exists in db
+        if (track){
+          track.updateAttributes({
+            approved: true,
+            rejected: false
+          })
+          .then(() => {
+              res.redirect('/admin')
+          })
+        }
+      })
+}
+
+export const setTrackPending = (req, res)  => {
+    return Track.findOne({
+        where: {
+            trackid: req.params.trackid
+        }
+    })
+    .then(track => {
+        // Check if record exists in db
+        if (track){
+          track.updateAttributes({
+            approved: false,
+            rejected: false
+          })
+          .then(() => {
+              res.redirect('/admin')
+          })
+        }
+      })
+}
+export const setTrackRejected = (req, res)  => {
+    return Track.findOne({
+        where: {
+            trackid: req.params.trackid
+        }
+    })
+    .then(track => {
+        // Check if record exists in db
+        if (track){
+          track.updateAttributes({
+            approved: false,
+            rejected: true 
+          })
+          .then(() => {
+              res.redirect('/admin')
+          })
+        }
+      })
+}
+
+
 const isValidAdmin = (admin, adminpass) => {
     return Admin.count({
             where: {
