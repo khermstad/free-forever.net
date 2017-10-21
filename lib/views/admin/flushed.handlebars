@@ -1,0 +1,13 @@
+<h1>Tracks Flushed:</h1>
+<div class="panel panel-danger">
+    <div class="panel-heading">Tracks Flushed:</div>
+    <div class="panel-body">
+        <ul>
+            {{#each rejectedTrackKeys}}
+                <li>{{this.Key}}<br></li>
+            {{/each}}
+        </ul>
+
+        <h2><a href="/admin">Back To Admin</a></h2>
+    </div>
+</div>

@@ -18,7 +18,7 @@
             <input type="submit" class="btn btn-warning" value="Set Pending" />
         </form>
         <p></p>
-        <form action="/admin/reject/{{this.dataValues.trackid}}" method="POST" >
+        <form action="/admin/reject/{{this.dataValues.trackid}}" method="POST">
             <input type="submit" class="btn btn-danger" value="Reject Track" />
         </form>
     </div>
@@ -39,11 +39,11 @@
                 <source src="{{this.s3link}}" type="audio/mpeg"> Your browser does not support the audio element.
             </audio>
         </ul>
-              <form action="/admin/approve/{{this.dataValues.trackid}}" method="POST">
+        <form action="/admin/approve/{{this.dataValues.trackid}}" method="POST">
             <input type="submit" class="btn btn-success" value="Approve Track" />
         </form>
-        
-       <p></p>
+
+        <p></p>
         <form action="/admin/reject/{{this.dataValues.trackid}}" method="POST">
             <input type="submit" class="btn btn-danger" value="Reject Track" />
         </form>
@@ -64,21 +64,37 @@
                 <source src="{{this.s3link}}" type="audio/mpeg"> Your browser does not support the audio element.
             </audio>
         </ul>
-       
-        
+
+
         <form action="/admin/approve/{{this.dataValues.trackid}}" method="POST">
             <input type="submit" class="btn btn-success" value="Approve Track" />
         </form>
         <p></p>
-       <form action="/admin/pending/{{this.dataValues.trackid}}" method="POST">
+        <form action="/admin/pending/{{this.dataValues.trackid}}" method="POST">
             <input type="submit" class="btn btn-warning" value="Set Pending" />
         </form>
-       
+
     </div>
+
+    <!--Flush Rejected Tracks 
+    get list of rejected on db 
+    delete from S3 
+    send admin to page showing all deleted tracks.
+    -->
+    
 </div>
 {{/each}}
 <hr>
-   <h4><a href="/signout">Sign Out of Admin Panel</a></h4>
-{{else}}
-    Login to <a href="/admin">Admin</a>
+<p>
+
+    <form action="/admin/flush" method="get">
+        <input type="submit" class="btn btn-info" value="Flush all Rejected Tracks" />
+    </form>
+</p>
+<hr>
+<h4>
+    <a href="/signout">Sign Out of Admin Panel</a>
+</h4>
+{{else}} Login to
+<a href="/admin">Admin</a>
 {{/if}}
