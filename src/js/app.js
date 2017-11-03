@@ -17,6 +17,8 @@ const uploadtrack = require("./routes/user/uploadtrack.js");
 const mysettings = require("./routes/user/mysettings.js");
 const userhome = require("./routes/user/userhome.js");
 const admin = require("./routes/admin.js");
+const track = require("./routes/track.js");
+
 
 // port settings
 const port = 3000;
@@ -50,6 +52,7 @@ app.use("/uploadtrack", uploadtrack)
 app.use("/mysettings", mysettings)
 app.use("/userhome", userhome)
 app.use("/admin", admin);
+app.use("/track", track)
 
 app.get("/signout", (req, res) => {
     req.session.destroy(console.log('session destroyed'))
