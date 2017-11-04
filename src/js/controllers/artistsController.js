@@ -23,15 +23,13 @@ export const getArtist = (req, res) => {
 
     return Track.findAll({
         where: {
-            displayedname: req.params.displayedname
+            displayedname: req.params.displayedname,
+            approved: true
         }
     })
         .then(tracks => {
-
             res.render('artist', {tracks: tracks, artist: req.params.displayedname})
         })
-
-
 }
 
 const getAllArtists = (req, res) => {
