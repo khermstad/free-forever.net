@@ -4,7 +4,7 @@ const app = express();
 const exphbs = require('express-handlebars');
 const path = require('path');
 const parser = require('body-parser');
-const session = require('express-session')
+const session = require('express-session');
 
 // route imports
 const index = require("./routes/index.js");
@@ -47,17 +47,17 @@ app.use("/catalog", catalog);
 app.use("/artists", artists);
 app.use("/register", register);
 app.use("/login", login);
-app.use("/mycatalog", mycatalog)
-app.use("/uploadtrack", uploadtrack)
-app.use("/mysettings", mysettings)
-app.use("/userhome", userhome)
+app.use("/mycatalog", mycatalog);
+app.use("/uploadtrack", uploadtrack);
+app.use("/mysettings", mysettings);
+app.use("/userhome", userhome);
 app.use("/admin", admin);
-app.use("/track", track)
+app.use("/track", track);
 
 app.get("/signout", (req, res) => {
     req.session.destroy(console.log('session destroyed'))
     res.render('index')
-})
+});
 
 
 app.listen(port, () => console.log("app.js running on port: " + port));

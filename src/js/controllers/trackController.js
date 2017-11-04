@@ -1,5 +1,5 @@
 // catalog controller
-const user = require('./../models/Track')
+const track = require('./../models/Track')
 const db = require('./../db')
 
 // track schema
@@ -9,8 +9,10 @@ const Track = db.define('track', track.schema, {
     updatedAt: false
 })
 
-
-
 export const index = (req, res) => {
     res.send("rendering track")
+}
+
+export const getTrack = (req, res) => {
+    res.send(req.track_id)
 }
