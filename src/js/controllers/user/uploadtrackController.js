@@ -4,12 +4,18 @@ const fs = require('fs')
 //track model and db 
 const track = require('./../../models/Track')
 const db = require('../../db')
+const user = require("./../../models/User")
 
 // Track schema for Sequelize
 const Track =  db.define('track', track.schema, {
     timestamps: true,
     createdAt: 'created',
     updatedAt: false
+})
+
+// User model
+const User = db.define('user', user.schema, {
+    timestamps: false
 })
 
 //s3
@@ -34,13 +40,24 @@ export const uploadtrack_post = (req, res) => {
 
 // inserts Track info into postgres DB using Sequelize ORM
 const createTrackInDB = (email, s3key, bucket, title, description) => {
-    Track.create({
-        email: email,
-        s3key: s3key,
-        bucket: bucket,
-        title: title,
-        description: description,
+
+    User.find({
+        where: {
+            email: email
+        }
     })
+        .then(user => {
+            Track.create({
+                email: email,
+                s3key: s3key,
+                bucket: bucket,
+                title: title,
+                description: description,
+                displayedname: user.displayedname
+            })
+        })
+
+
 }
 // findTrack helps check DB for s3key before trying to upload
 const isUniqueTrack = (s3key) => {

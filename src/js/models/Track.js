@@ -31,6 +31,9 @@ const schema = {
     },
     trackid: {
         type: Sequelize.INTEGER
+    },
+    displayedname: {
+        type: Sequelize.STRING
     }
 }
 
