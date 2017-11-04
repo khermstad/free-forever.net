@@ -15,12 +15,12 @@ const getAllApprovedTracks = (req, res) => {
             approved: true
         }
     })
-    .then(tracks => {
-        for(let track of tracks){
-            track.s3link = `https://s3.amazonaws.com/ffm-datastore/${track.dataValues.s3key}`
-        }
-        res.render("catalog", {req: req, tracks: tracks})
-    })
+        .then(tracks => {
+            for (let track of tracks) {
+                track.s3link = `https://s3.amazonaws.com/ffm-datastore/${track.dataValues.s3key}`
+            }
+            res.render("catalog", {req: req, tracks: tracks})
+        })
 }
 
 export const index = (req, res) => getAllApprovedTracks(req, res);

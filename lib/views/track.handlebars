@@ -1,0 +1,18 @@
+
+<div class="panel panel-default">
+    <div class="panel-heading">{{track.title}} by
+        <a href="/artists/{{user.displayedname}}">{{user.displayedname}}</a>
+    </div>
+    <div class="panel-body">
+        <ul>
+            <li>Track Description: {{track.description}} </li>
+            <audio controls>
+                <source src="https://s3.amazonaws.com/ffm-datastore/{{track.s3key}}" type="audio/mpeg">
+                Your browser does not support the audio element.
+            </audio>
+            <hr>
+            <a href="https://s3.amazonaws.com/ffm-datastore/{{track.s3key}}">Download</a>
+
+        </ul>
+    </div>
+</div>
